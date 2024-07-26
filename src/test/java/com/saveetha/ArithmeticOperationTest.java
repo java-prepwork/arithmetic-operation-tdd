@@ -9,7 +9,8 @@ public class ArithmeticOperationTest {
     void toReturnFiveWhenTwoIsAddedWithThree() {
 
         ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
+        int two = 2, three = 3, five = 5;
 
-        assertEquals(5, arithmeticOperation.add(2, 3));
+        assertEquals(five, arithmeticOperation.add(two, three));
     }
 }
