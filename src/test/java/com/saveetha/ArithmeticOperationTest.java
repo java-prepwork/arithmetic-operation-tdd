@@ -8,9 +8,16 @@ public class ArithmeticOperationTest {
     @Test
     void toReturnFiveWhenTwoIsAddedWithThree() {
 
+        // AAA
+
+        // Arrange
         ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
         int two = 2, three = 3, five = 5;
 
-        assertEquals(five, arithmeticOperation.add(two, three));
+        // Act
+        int actualSum = arithmeticOperation.add(two, three);
+
+        // Assert
+        assertEquals(five, actualSum);
     }
 }
