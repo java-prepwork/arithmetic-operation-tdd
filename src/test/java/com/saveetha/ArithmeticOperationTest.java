@@ -94,4 +94,50 @@ public class ArithmeticOperationTest {
         }
     }
 
+    @Nested
+    class Multiplication {
+        @Test
+        void toReturnFifteenWhenFiveIsMultipliedWithThree() {
+
+            ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
+            int three = 3, five = 5, fifteen = 15;
+
+            int actualSum = arithmeticOperation.multiply(five, three);
+
+            assertEquals(fifteen, actualSum);
+        }
+
+        @Test
+        void toReturnMinusFourteenWhenMinusSevenIsMultipliedWithTwo() {
+
+            ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
+            int minusSeven = -7, minusFourteen = -14, two = 2;
+
+            int actualSum = arithmeticOperation.multiply(minusSeven, two);
+
+            assertEquals(minusFourteen, actualSum);
+        }
+
+        @Test
+        void toReturnZeroWhenZeroIsMultipliedWithMinusTwo() {
+
+            ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
+            int zero = 0, minusTwo = -2;
+
+            int actualSum = arithmeticOperation.multiply(zero, minusTwo);
+
+            assertEquals(zero, actualSum);
+        }
+
+        @Test
+        void toReturnZeroWhenZeroIsMultipliedWithZero() {
+
+            ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
+            int zero = 0;
+
+            int actualSum = arithmeticOperation.multiply(zero, zero);
+
+            assertEquals(zero, actualSum);
+        }
+    }
 }
