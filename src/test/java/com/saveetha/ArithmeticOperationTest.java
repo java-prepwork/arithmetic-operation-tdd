@@ -1,11 +1,22 @@
 package com.saveetha;
 
+import com.saveetha.exception.DivideByZeroException;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ArithmeticOperationTest {
+
+    private static ArithmeticOperation arithmeticOperation;
+
+    @BeforeAll
+     static void beforeAll() {
+        arithmeticOperation = new ArithmeticOperation();
+    }
     @Nested
     class Addition {
         @Test
@@ -14,7 +25,6 @@ public class ArithmeticOperationTest {
             // AAA
 
             // Arrange
-            ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
             int two = 2, three = 3, five = 5;
 
             // Act
@@ -27,7 +37,6 @@ public class ArithmeticOperationTest {
         @Test
         void toReturnMinusFiveWhenMinusSevenIsAddedWithTwo() {
 
-            ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
             int minusFive = -5, minusSeven = -7, two = 2;
 
             int actualSum = arithmeticOperation.add(two, minusSeven);
@@ -38,7 +47,6 @@ public class ArithmeticOperationTest {
         @Test
         void toReturnTwoWhenZeroIsAddedWithTwo() {
 
-            ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
             int zero = 0, two = 2;
 
             int actualSum = arithmeticOperation.add(two, zero);
@@ -52,7 +60,6 @@ public class ArithmeticOperationTest {
         @Test
         void toReturnTwoWhenFiveIsSubtractedWithThree() {
 
-            ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
             int two = 2, three = 3, five = 5;
 
             int actualDifference = arithmeticOperation.sub(five, three);
@@ -63,7 +70,6 @@ public class ArithmeticOperationTest {
         @Test
         void toReturnMinusNineWhenMinusSevenIsSubtractedWithTwo() {
 
-            ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
             int minusSeven = -7, minusNine = -9, two = 2;
 
             int actualSum = arithmeticOperation.sub(minusSeven, two);
@@ -74,7 +80,6 @@ public class ArithmeticOperationTest {
         @Test
         void toReturnMinusTwoWhenZeroIsSubtractedWithTwo() {
 
-            ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
             int zero = 0, two = 2, minusTwo = -2;
 
             int actualDifference = arithmeticOperation.sub(zero, two);
@@ -85,7 +90,6 @@ public class ArithmeticOperationTest {
         @Test
         void toReturnZeroWhenZeroIsSubtractedWithZero() {
 
-            ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
             int zero = 0;
 
             int actualDifference = arithmeticOperation.sub(zero, zero);
@@ -99,7 +103,6 @@ public class ArithmeticOperationTest {
         @Test
         void toReturnFifteenWhenFiveIsMultipliedWithThree() {
 
-            ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
             int three = 3, five = 5, fifteen = 15;
 
             int actualProduct = arithmeticOperation.multiply(five, three);
@@ -110,7 +113,6 @@ public class ArithmeticOperationTest {
         @Test
         void toReturnMinusFourteenWhenMinusSevenIsMultipliedWithTwo() {
 
-            ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
             int minusSeven = -7, minusFourteen = -14, two = 2;
 
             int actualProduct = arithmeticOperation.multiply(minusSeven, two);
@@ -121,7 +123,6 @@ public class ArithmeticOperationTest {
         @Test
         void toReturnZeroWhenZeroIsMultipliedWithMinusTwo() {
 
-            ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
             int zero = 0, minusTwo = -2;
 
             int actualProduct = arithmeticOperation.multiply(zero, minusTwo);
@@ -132,7 +133,6 @@ public class ArithmeticOperationTest {
         @Test
         void toReturnZeroWhenZeroIsMultipliedWithZero() {
 
-            ArithmeticOperation arithmeticOperation = new ArithmeticOperation();
             int zero = 0;
 
             int actualProduct = arithmeticOperation.multiply(zero, zero);
@@ -141,5 +141,45 @@ public class ArithmeticOperationTest {
         }
     }
 
+    @Nested
+    class Division {
+        @Test
+        void toReturnThreeWhenFifteenIsDividedByThree() throws DivideByZeroException {
+
+            int three = 3, five = 5, fifteen = 15;
+
+            int actualQuotient = arithmeticOperation.divide(fifteen, three);
+
+            assertEquals(five, actualQuotient);
+        }
+
+        @Test
+        void toReturnMinusTwoWhenMinusSevenIsDividedByThree() throws DivideByZeroException {
+
+            int minusSeven = -7, minusTwo = -2, three = 3;
+
+            int actualQuotient = arithmeticOperation.divide(minusSeven, three);
+
+            assertEquals(minusTwo, actualQuotient);
+        }
+
+        @Test
+        void toReturnZeroWhenZeroIsDividedByTwo() throws DivideByZeroException {
+
+            int zero = 0, two = 2;
+
+            int actualQuotient = arithmeticOperation.divide(zero, two);
+
+            assertEquals(zero, actualQuotient);
+        }
+
+        @Test
+        void toReturnZeroWhenTwoIsDividedByZero() throws DivideByZeroException {
+
+            int zero = 0, two = 2;
+
+            assertThrows(DivideByZeroException.class, ()-> { arithmeticOperation.divide(two, zero); });
+        }
+    }
 
 }
